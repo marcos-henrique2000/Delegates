@@ -16,17 +16,19 @@ namespace Delegates
             list.Add(new Product("Tablet", 350.00));
             list.Add(new Product("HD Case", 80.90));
 
-            list.RemoveAll(ProductTest); // or list.RemoveAll(p => p.Price >= 100.0) lambda
+            Action<Product> act = p => { p.Price += p.Price * 0.1; };
 
+            list.ForEach(p => { p.Price += p.Price * 0.1; });
             foreach(Product p in list)
             {
                 Console.WriteLine(p);
             }
+
         }
 
-        public static bool ProductTest(Product p)
+        static void UpdatePrice(Product p)
         {
-            return p.Price >= 100.0;
+            p.Price += p.Price * 0.1;
         }
 
     }
