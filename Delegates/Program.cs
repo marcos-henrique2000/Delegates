@@ -4,7 +4,7 @@ using Delegates.Services;
 namespace Delegates
 {
 
-    delegate double BinaryNumericOperation(double n1, double n2);
+    delegate void BinaryNumericOperation(double n1, double n2);
 
     class Program
     {
@@ -13,11 +13,11 @@ namespace Delegates
             double a = 10;
             double b = 12;
 
-            BinaryNumericOperation op = CalculationService.Sum;
+            BinaryNumericOperation op = CalculationService.ShowSum;
+            op += CalculationService.showMax;
 
+            op(a, b); // or op.Invoke(a,b)
 
-            double result = op(a, b); // or op.Invoke(a, b)
-            Console.WriteLine(result);
         }
     }
 }
