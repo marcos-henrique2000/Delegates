@@ -17,9 +17,9 @@ namespace Delegates
             list.Add(new Product("Tablet", 350.00));
             list.Add(new Product("HD Case", 80.90));
 
-            Func<Product, string> func = NameUpper;
+            Func<Product, string> func = p => p.Name.ToUpper(); //lambda
 
-            List<string> result = list.Select(func).ToList();
+            List<string> result = list.Select(p => p.Name.ToUpper()).ToList();
 
             foreach (string s in result)
             {
@@ -27,9 +27,5 @@ namespace Delegates
             }
         }
 
-        static string NameUpper(Product p)
-        {
-            return p.Name.ToUpper();
-        }
     }
 }
