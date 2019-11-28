@@ -1,23 +1,33 @@
 ﻿using System;
-using Delegates.Services;
+using System.Collections.Generic;
+using Delegates.Entities;
 
 namespace Delegates
 {
-
-    delegate void BinaryNumericOperation(double n1, double n2);
 
     class Program
     {
         static void Main(string[] args)
         {
-            double a = 10;
-            double b = 12;
+            List<Product> list = new List<Product>();
 
-            BinaryNumericOperation op = CalculationService.ShowSum;
-            op += CalculationService.showMax;
+            list.Add(new Product("TV", 900.00));
+            list.Add(new Product("Mouse", 50.00));
+            list.Add(new Product("Tablet", 350.00));
+            list.Add(new Product("HD Case", 80.90));
 
-            op(a, b); // or op.Invoke(a,b)
+            list.RemoveAll(ProductTest); // or list.RemoveAll(p => p.Price >= 100.0) lambda
 
+            foreach(Product p in list)
+            {
+                Console.WriteLine(p);
+            }
         }
+
+        public static bool ProductTest(Product p)
+        {
+            return p.Price >= 100.0;
+        }
+
     }
 }
